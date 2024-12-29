@@ -77,3 +77,202 @@ const mixedArray = [1, 2, "hello", 4, 5, true, 8, null, 10];
 console.log(sumArray(mixedArray)); // Выведет 30 (1 + 2 + 4 + 5 + 8 + 10)
 console.log(sumArray([1, 2, 3])) // выведет 6
 console.log(sumArray(["a", "b", "c"])) // выведет 0 */
+
+// Задача 2
+/* Пользователь:
+	- Возраст
+	- Наличие работы
+	- Деньги
+	Нужно проверить может ли он купить новый MacBook за 2000$?
+	Он может брать не только свои деньги, но и взять кредит.
+	Ему дадут 500$, только если ему больше 24-х лет и он
+	имеет работу, 100$ если ему просто больше 24-х лет и 0 в
+	ином случае.
+	Напишите функцию, которая принимает данные пользователя
+	и товара и возвращает true или false; */
+
+
+
+/* 
+if (age > 24 && hasWork) {
+    credit += 500;
+    return credit;
+} else if (age > 24) */
+
+const age = 25;
+const hasWork = true;
+const money = 1500;
+const macBookCost = 2000;
+
+function canHaveCredit (age, hasWork) {
+    let credit = 0;
+    switch (true) {
+        case age > 24:
+            credit +=400;
+        case hasWork:
+            credit += 100;
+        break;
+        default:
+            credit ++;
+    }
+    return credit;
+}
+
+function canBuyMacBook (age, hasWork, money, macBookCost) {
+    const moneyInCredit = canHaveCredit(age, hasWork);
+    const moneyOverall = moneyInCredit + money;
+    let canBuy = false;
+    if (moneyOverall > macBookCost) {
+        canBuy = true;
+        return canBuy;
+    } 
+    return canBuy;
+}
+
+console.log(canBuyMacBook (age, hasWork, money, macBookCost))
+
+   /*  /Задача 1 */
+/* Дан список задач
+const tasks = ['Задача 1']
+Сделать функции:
+-Добавление задачи в конец
+-Удаление задачи по названию
+-Перенос задачи в начало списка по названию
+Всегда меняем исходный массив. */
+
+const tasks = ['Задача 1'];
+
+function AddTask (taskName) {
+     tasks.push(taskName);
+}
+
+
+function DeleteTask (taskName) {
+    const indexOfElement = tasks.indexOf(taskName);
+    if (indexOfElement === -1) {
+         return;
+    } else {
+       return tasks.splice(indexOfElement, 1)
+        /* return tasks;  */// конкретно в нашем случае return tasks необязателен так как мы не закидываем результат функции в отдельную переменную. Мы просто вызываем эту функцию с элементом (на этот моменте удаляется элемент. и в консоль лог выводим значение нового массива. Но если нам нужно положить функцию в переменную и потом в консоль закинуть переменную, то функция обязана чтото возвращать, иначе будет undefined)
+    }
+
+}
+AddTask('Задача 2')
+AddTask('Задача 3')
+AddTask('Задача 4')
+console.log(tasks)
+console.log('-----')
+/* -Перенос задачи в начало списка по названию */
+
+function PrioritizeOfElement (taskName) {
+    const deleteElement = DeleteTask(taskName);
+    if(!deleteElement) {
+        return;
+    }
+    tasks.unshift(deleteElement[0])
+}
+PrioritizeOfElement('Задача 4')
+console.log(tasks)
+
+//Задача 2
+/* Дан произвольный url - 
+'https://purpleschool.ru/course/javascript'
+Нужно сделать функцию, которая выводит в консоль:
+-Протокол (https)
+-Доменном имя (purpleschool.ru)
+-Путь внутри сайта (/course/javascript) */
+
+const url = 'https://purpleschool.ru/course/javascript'
+
+function urlString (url) {
+    const massiveUrl = url.split('/');
+    const [protokol, _, domen, ...path] = massiveUrl;
+    const pathInString = path.join('/')
+    console.log(`Протокол: ${protokol.split(':')[0]}`) 
+    console.log(`Доменное имя: ${domen}`) 
+    console.log(`Путь внутри сайта: /${pathInString}`)
+}
+
+urlString(url)
+
+//Задача 1
+/* Вывести в консоль строку "Я люблю JS !" из массива, проходя циклом в обратном порядке, не используя метод ResizeObserverSize. 
+const arr = ['i', 'JS', 'люблю', 'Я'] */
+
+const arr = ['!', 'JS', 'люблю', 'Я'];
+const arrMassive = [];
+for (let i = arr.length-1; i >= 0; i--) {
+    arrMassive.push(arr[i])    
+}
+
+const arrString = arrMassive.join(' ')
+console.log(arrString)
+
+//Задача 2
+/* Есть выгрузка операций пользователя
+const operations = [1000, -700, 300, -500, 10000];
+а так же начальный баланс в 100$
+Необходимо сделать функции расчёта:
+- Итогового баланса
+- Наличия отрицательного баланса (если после очередной операции баланс < 0, то выдавать false)
+- Расчёта среднего расхода и среднего дохода */
+
+const operations = [1000, -100, 300, -600, 10000];
+const balance = 99;
+function finalBalance (operations, balance) {
+    for (element of operations) {
+        balance += element;
+    }
+    return balance;
+}
+
+function finalBalance (operations, balance) {
+    for (let i = 0; i < operations.length; i ++) {
+        balance += operations[i];
+    }
+    return balance;
+}
+
+function finalBalance (operations, balance) {
+    for (index in operations) {
+        balance += operations[index];
+    }
+    return balance;
+}
+
+console.log(finalBalance(operations, balance))
+
+/* function minusBalance (operations, balance) {
+    let isBalancePlus = true;
+    for (element of operations) {
+        balance += element;
+        if (balance < 0) {
+             isBalancePlus = false;
+             break;
+        }
+    }
+    return isBalancePlus;
+}
+
+console.log(minusBalance(operations, balance)); */
+
+function middlePlusAndMinus (operations) {
+    let PlusSum = 0;
+    let PlusAmount = 0;
+    let MinusSum = 0;
+    let MinusAmount = 0;
+    for (let i = 0; i < operations.length; i ++) {
+        if (operations[i] > 0) {
+            PlusSum += operations[i];
+            PlusAmount++;
+        } 
+        if (operations[i] < 0) {
+            MinusSum += operations[i];
+            MinusAmount++;
+        } 
+
+    }
+    return [MinusSum/MinusAmount, PlusSum/PlusAmount]
+}
+
+console.log(middlePlusAndMinus(operations))
