@@ -276,3 +276,190 @@ function middlePlusAndMinus (operations) {
 }
 
 console.log(middlePlusAndMinus(operations))
+
+
+//Условие: Написать функцию, которая принимает массив чисел и возвращает их сумму. Используйте цикл for (или for...of).
+
+const numberQuantity = [100, -50, 30, 20, 40];
+let sumNumbersInMassive = 0;
+function sumOfNumbers (massivOfNumbers) {
+    for (let i = 0; i< massivOfNumbers.length; i++) {
+        sumNumbersInMassive += massivOfNumbers[i]
+    }
+    return sumNumbersInMassive
+}
+
+console.log(sumOfNumbers(numberQuantity));
+
+//Условие: Написать функцию, которая принимает массив чисел и возвращает новый массив, содержащий только положительные числа. 
+
+const numberQuantity2 = [100, -50, 30, 20, 40];
+
+let newMassive = [];
+function numbersPlus (massivOfNumbers) {
+    for (let i = 0; i< massivOfNumbers.length; i++) {
+        if (massivOfNumbers[i] < 0) {
+            continue;           
+        } else {
+            newMassive.push(massivOfNumbers[i])
+        }
+    }
+
+    return newMassive;
+}
+
+console.log(numbersPlus(numberQuantity2))
+
+
+// Условие: Написать функцию, которая принимает массив чисел и возвращает новый массив, в котором каждый элемент удвоен.
+const numberQuantity3 = [100, -50, 30, 20, 40];
+
+function doubleElements (massivOfNumbers) {
+    const doubleMassive = massivOfNumbers.map((element) => element * 2)
+    return doubleMassive;
+}
+console.log(doubleElements(numberQuantity3))
+
+
+// Условие: Написать функцию, которая принимает массив строк и число minLength. Функция должна вернуть новый массив, содержащий только те строки, длина которых больше или равна minLength.
+
+const numberQuantity4 = [100, -50, 30, 20, 40];
+
+let minLength = 1000;
+
+function findNumbersMoreThanMin (massivOfNumbers) {
+    const massivWithBigNumbers = massivOfNumbers.filter((element) => element > minLength)
+    return massivWithBigNumbers
+}
+console.log(findNumbersMoreThanMin(numberQuantity4))
+
+
+//Условие: Написать функцию, которая принимает массив чисел и возвращает их сумму.
+
+const numberQuantity5 = [100, -50, 30, 20, 40];
+function sumNumbers (massivOfNumbers) {
+    const summa = massivOfNumbers.reduce((acc, element) => {
+         return acc += element;
+    }, 0)
+    return summa  
+}
+console.log(sumNumbers(numberQuantity5))
+
+
+// Условие: Написать функцию высшего порядка createMultiplier, которая принимает число multiplier. Функция должна возвращать другую функцию, которая принимает число и возвращает результат умножения этого числа на multiplier.
+
+function createMultiplier (multiplier) {
+    return function (number1) {
+        return multiplier * number1;
+    }
+}
+
+const resultMultiplier = createMultiplier(2);
+console.log(resultMultiplier(7))
+
+//Написать функцию, которая принимает два массива чисел и возвращает новый массив, содержащий только уникальные числа, которые присутствуют хотя бы в одном из массивов (не дублируются ни в первом, ни во втором массиве).
+
+
+//Напишите функцию, которая принимает массив чисел и возвращает сумму всех четных чисел в массиве, используя цикл for. Если массив пуст, функция должна вернуть 0.
+let sumOfEvenNumbers = 0;
+function returnSum (randomMassive) {
+    if (randomMassive.length === 0) {
+        return 0;
+    }
+    for (let i = 0; i < randomMassive.length; i ++) {
+        if (randomMassive[i] % 2 === 0) {
+            sumOfEvenNumbers += randomMassive[i]
+        } else {
+            continue;
+        }
+    }
+    return sumOfEvenNumbers;
+}
+
+console.log(returnSum([1, 2, -5, -2, 4, 7, 3]))
+
+
+//  Напишите функцию, которая принимает массив строк и возвращает количество строк, длина которых больше 5 символов. Используйте цикл for...of.
+let amountOfLengthMoreFiveStrings = 0;
+
+const randomMassive2 = ['Никита', 'Рыба', 'Аквариум', 'Перфоратор', 'Морж']
+function amountOfStrings (massiveOfStrings) {
+    for (const element of massiveOfStrings) {
+        if (element.length > 5) {
+            amountOfLengthMoreFiveStrings++;
+        } else {
+            continue;
+        }
+    }
+    return amountOfLengthMoreFiveStrings;
+}
+
+console.log(amountOfStrings(randomMassive2))
+
+//  Напишите функцию, которая принимает массив чисел и возвращает наибольшее число в массиве. Функция должна обрабатывать случай, когда массив пуст, возвращая null. Используйте цикл for.
+const numbersInMassive = [3, 2, 4, 5, 1, 9, 2, 3];
+let theBiggestNumber = 0;
+function returnTheBiggestNumber (massiveOfNumbers) {
+    let max = massiveOfNumbers[0];
+    if (massiveOfNumbers.length === 0) {
+        return null;
+    }
+    for (let i = 0; i < massiveOfNumbers.length; i++) {
+        if (massiveOfNumbers[i] > max) {
+            max = massiveOfNumbers[i];
+        }
+    }
+    return max;
+}
+
+console.log(returnTheBiggestNumber(numbersInMassive))
+
+//  Напишите функцию, которая принимает число и возвращает строку “Четное” если число четное, “Нечетное” если нечетное, и “Ноль” если число равно 0. Используйте условный оператор ternary.
+
+
+function isEvenNumber (number) {
+    return number === 0 ? 'Ноль' : number % 2 === 0 ? 'Четное' : 'Нечетное'
+}
+const value = isEvenNumber(0);
+console.log(value)
+
+
+// //Задача1. Найти среднее значение последовательности чисел с помощью reduce.
+
+ const numberssss = [1, 4, 4, 10];
+
+ const averageNumberAmongNumbers = numberssss.reduce((acc, numberrrr, i) => {
+    console.log(`Аккумулятор: ${acc}, Текущее значение: ${numberrrr}, Индекс: ${i}`)
+    if (i !== numberssss.length - 1) {
+        return acc + numberrrr
+    } else {
+        return (acc + numberrrr) / numberssss.length
+    }
+
+ }, 0)
+
+ console.log(averageNumberAmongNumbers)
+
+
+ // Дано массив чисел. Найдите произведение всех чисел в массиве, которые больше 5. Если массив пуст, верните 1.
+
+const massiveNumbers = [1, 2, 7, 8, 9];
+
+function multiplyOfNumbersThatMoreThanFive (massiveNumbers) {
+        if (massiveNumbers.length === 0 || !Array.isArray(massiveNumbers)) {
+            return 1;
+        }
+        if (massiveNumbers.some((element) => element >5) === false) {
+            return 'В массиве нет элементов больше 5'
+        }      
+    const multiplyOfNumbers = massiveNumbers
+        .filter((element) => element > 5)
+        .reduce((acc, currentNumber) => {
+            return acc * currentNumber
+        })
+    return multiplyOfNumbers
+}
+
+console.log(multiplyOfNumbersThatMoreThanFive(1))
+
+

@@ -60,11 +60,13 @@ console.log(powerrr(3)) */
 
 // Задание 1. Переписать используя стрелочную функцию
 
-const powerNumber = (num) => (power2) => num ** power2;
+const powerNumber = num => power2 => num ** power2;
 
 console.log(powerNumber(4)(5))
 
 const powerrrr = powerNumber(3);
 console.log(powerrrr(5))
+
+
 
 
