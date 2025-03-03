@@ -24,6 +24,7 @@ console.log(users) // добавит в массив Андрея
 
 const arrlength = users.push('Вика') // добавляет в конец новый элемент массива. По сути push и все дальнейшие методы являются функциями, то есть что то возвращают
 console.log(users)
+console.log('--------------------')
 console.log(arrlength) // возвращает длину массива
 users.unshift('Лох') // добавляет в начало новый элемент массива. вернет новую длину массива если передадим return в переменную.
 console.log(users)
@@ -82,6 +83,7 @@ console.log(types1String)
 const stringg = 'user, admin, superuser'
 const massiveStringg = stringg.split(',') // из строки в массив, внутри помещается элемент, по которому мы разбиваем исходную строку
 console.log(massiveStringg)
+console.log('-------------')
 
 
 //Задача 1
@@ -168,6 +170,7 @@ console.log(tasks)
 Delete('Задача 4')
 console.log(tasks)
 Prioritize('Задача 2')
+console.log(tasks)
 
 
 //Деструктуризация

@@ -62,13 +62,15 @@ const prices = [[100, 200], [120, 100], [200, 350]];
 
 const newPrices = prices.map((element) => {
     const elementDiference = element[element.length - 1] - element[0];
-    return elementDiference
+    return elementDiference;
 })
     .filter (element => {
         return element > 0
     })
 
+console.log('-------------------------------')
 console.log(newPrices)
+console.log('-------------------------------')
 
 
 // reduce

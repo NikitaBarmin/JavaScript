@@ -462,4 +462,350 @@ function multiplyOfNumbersThatMoreThanFive (massiveNumbers) {
 
 console.log(multiplyOfNumbersThatMoreThanFive(1))
 
+/* Правила распределения:
 
+Создайте три новые группы - "High", "Medium", "Low".
+Студенты с оценкой 4 или 5 должны попасть в группу "High".
+Студенты с оценкой 3 должны попасть в группу "Medium".
+Студенты с оценкой 1 или 2 должны попасть в группу "Low".
+const students = [
+    { name: "Alice", grade: 4, group: "A" },
+    { name: "Bob", grade: 2, group: "B" },
+    { name: "Charlie", grade: 3, group: "C" },
+    { name: "Diana", grade: 5, group: "A" },
+    { name: "Eve", grade: 1, group: "B" },
+  ];
+  
+  const distributedGroups = distributeByGrade(students);
+  console.log(distributedGroups);
+  
+    Результат должен быть таким:
+    {
+        High: [
+          { name: "Alice", grade: 4, group: "High" },
+          { name: "Diana", grade: 5, group: "High" }
+        ],
+        Medium: [
+          { name: "Charlie", grade: 3, group: "Medium" }
+        ],
+        Low: [
+          { name: "Bob", grade: 2, group: "Low" },
+          { name: "Eve", grade: 1, group: "Low" }
+        ]
+    } High: [], Medium: [], Low: [] */
+ 
+/* const students = [
+    { name: "Alice", grade: 4, group: "A" },
+    { name: "Bob", grade: 2, group: "B" },
+    { name: "Charlie", grade: 3, group: "C" },
+    { name: "Diana", grade: 2, group: "A" },
+    { name: "Eve", grade: 1, group: "B" },
+];
+
+function distributeByGrade (students) {
+    if (!students) {
+        return {};
+    }
+    let high = [];
+    let medium = [];
+    let low = [];
+    for (let student of students) {
+        switch (true) {
+            case student.grade >= 4:
+                student.group = 'High';
+                high.push(student)
+                break;
+            case student.grade === 3:
+                student.group = 'Medium';
+                medium.push(student)
+                break;
+            case student.grade < 3 && student.grade >= 1:
+                student.group = 'Low';
+                low.push(student)
+                break;
+            default:
+                student.group = 'Отрицательный грейд'  
+        }
+    }
+    return {
+        High: high,
+        Medium: medium,
+        Low: low
+    }
+}
+console.log(distributeByGrade(students)) */
+console.log('-------------------------------------')
+const products = [
+]
+
+function addProduct (name, price, quantity) {
+    if (typeof name !== 'string' || (typeof price !== 'number' || typeof quantity !== 'number')) {
+        return;
+    }
+    const newObj = {
+        name,
+        price,
+        quantity
+    }
+    products.push(newObj);
+}
+
+function getTotalValue () {
+    let sum = 0;
+    for (const product of products) {
+        sum +=product.price;
+    }
+    return sum;
+}
+
+function findProductByName (name) {
+    const productByName = products.find((element) => element.name === name);
+    if (!productByName) {
+        return;
+    }
+    return productByName;
+}
+
+function getProductWithDiscount (discount) {
+    const discountInNumber = discount / 100;
+    for (const product of products) {
+        product.price = product.price - product.price * discountInNumber; 
+    }
+    return products;
+}
+
+addProduct('Яблоко', 50, 10)
+addProduct('Груша', 100, 5)
+addProduct('Апельсин', 200, 3)
+addProduct('Клубника', 500, 7)
+console.log(products)
+const totalValue = getTotalValue();
+console.log(totalValue)
+const productByName = findProductByName('Яблоко')
+console.log(productByName)
+getProductWithDiscount(35)
+console.log(products)
+
+/* Задача 1: “Фильтрация и преобразование массива”
+Описание:
+Дан массив чисел. Вам нужно написать функцию, которая фильтрует массив, оставляя только четные числа, а затем возводит каждое из них в квадрат. */
+const numbers = [5, 3, 6, 9, 11, 12];
+function evenSquare (massiveNumbers) {
+    const newMassive = massiveNumbers
+    .filter((massiveNumber) => {
+        if (massiveNumber % 2 == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    })
+    .map ((massiveNumber) => massiveNumber ** 2)
+    return newMassive;
+}
+console.log(evenSquare(numbers))
+
+/* На вход программе подаётся одна строка. Напишите программу, которая определяет сколько в ней одинаковых соседних символов. */
+const stringg = 'Никита 11 Баарррмин'
+function identicalSymbols (string) {
+    let quantityNeigbours = 0;
+    let previousChar = '';
+    for (el of string) {
+        if (el === previousChar) {
+            quantityNeigbours++;
+        }
+        previousChar = el;                           
+    }
+    return quantityNeigbours;
+}
+console.log(identicalSymbols(stringg))
+
+/* Дано натуральное число. Напишите программу, которая определяет, состоит ли указанное число из одинаковых цифр. */
+
+function sameNumber (number) {
+    const stringNumber = String(number);
+    let theSameNumber = false;
+    const firstNumber = stringNumber[0];
+    if (stringNumber.length <= 1) {
+        theSameNumber = true;
+        return theSameNumber;
+    }
+    for (const element of stringNumber) {
+        if (element == firstNumber) {
+            theSameNumber = true;
+        } else {
+            theSameNumber = false;
+        }
+    }
+    return theSameNumber;
+}
+console.log(sameNumber(555555))
+
+// Есть строка с различными натуральными числами. Необходимо переставить местами максимальный и минимальный элемент.
+
+function maxAndMinChanged (number) {
+    let stringNumber = String(number);
+    if (isNaN(String(number))) {
+        return;
+    }
+    let maxElement = stringNumber[0];
+    let minElement = stringNumber[0];
+    for (element of stringNumber) {
+        if (element > maxElement) {
+            maxElement = element;
+        }
+        if (element < minElement) {
+            minElement = element;
+        }        
+    }
+    
+    if (maxElement == minElement) {
+        return stringNumber;
+    }
+    const tempChar = '*';
+    let tempString = stringNumber.replaceAll(maxElement, tempChar);
+    let newString = tempString.replaceAll(minElement, maxElement);
+    newString = newString.replaceAll(tempChar, minElement);
+    return newString; 
+}
+console.log(maxAndMinChanged(29318));
+
+/* Задача 2: Фильтрация массива чисел
+Описание: Напишите функцию, которая принимает массив чисел и возвращает новый массив, содержащий только те числа, которые больше среднего значения исходного массива. */
+
+function filterNumbers (massive) {
+    const sum = massive.reduce((acc, currentNumber, id) => {
+        if (id !== massive.length - 1) {
+            return acc += currentNumber
+        } else {
+            return (acc + currentNumber) / massive.length
+        }
+    }, 0);
+    const filter = massive.filter((element) => element > sum)
+    return filter;
+}
+const average = filterNumbers([10, 2, 3, 4, 5])
+console.log(average)
+
+
+
+/* Задача 4: Проверка на палиндром (с учетом регистра и пробелов)
+Описание: Напишите функцию, которая проверяет, является ли строка палиндромом (читается одинаково в обоих направлениях), игнорируя регистр и пробелы.
+ */
+
+function palindromString (string) {
+    const cleanString = string.toLowerCase().trim()
+    const palindrom = cleanString.split('').reverse().join('')
+    console.log(palindrom)
+    return cleanString == palindrom;
+}
+const what = palindromString('saippuakivikauppias')
+console.log(what)
+
+/* Задача 1: Преобразование массива в объект “счетчик”
+Описание: Дан массив строк. Необходимо создать объект, в котором ключами будут уникальные строки из массива, а значениями - количество раз, которое каждая строка встречается в массиве. */
+
+function massiveCounter (massiveString) {
+    const counts = {};
+    massiveString.forEach((element) => {
+        counts[element] = (counts[element] || 0) + 1;
+    })
+    return counts;    
+}
+console.log(massiveCounter(['a', 'b', 'c', 'a', 'a', 'b', 'c', 'c']))
+
+/* Задача 4: Преобразование массива объектов в объект-словарь
+Описание: Дан массив объектов, каждый из которых имеет свойства id и name. Нужно создать объект, где ключами будут значения свойства id, а значениями - значения свойства name. */
+
+function objectDictionary (list) {
+    const objectDiction = {};
+    list.forEach((element) => {
+        objectDiction[element.id] = element.name
+    })
+    return objectDiction;
+}
+
+const list = [
+    {id: 'one', name: 'Никита'},
+    {id: 'two', name: 'Андрей'},
+    {id: 'three', name: 'Александр'}
+]
+console.log(objectDictionary(list))
+
+
+
+/* Описание: Напишите функцию, которая принимает массив и размер группы chunkSize и возвращает массив массивов,
+где каждый внутренний массив содержит не более chunkSize элементов из исходного массива.*/
+
+function listOfLists (list, size) {
+    const newMassive = []
+    for (let i = 0; i < list.length; i+=size) {
+        newMassive.push(list.slice(i, i + size))
+    }
+    return newMassive;
+}
+console.log(listOfLists([1, 2, 3, 4, 5, 6, 7, 8], 3))
+
+/* Задача 1: Трансформация массива в строку с условием
+Описание: Дан массив объектов, каждый из которых имеет свойства name и isAvailable. Напишите функцию,
+которая формирует строку со списком доступных (isAvailable: true) имен, разделенных запятой и пробелом.
+Если в массиве нет доступных имен, функция должна вернуть строку “Нет доступных товаров”.*/
+
+function transformationArrayInString (array) {
+    const massiveForJoin = [];
+    const iterationObject = Object.keys(array);
+    for (const element of iterationObject) {
+        if (array[element].isAvailable) {
+            massiveForJoin.push(array[element].name)
+        } if (!array[element].isAvailable) {
+            continue;
+        }
+    }
+    if (massiveForJoin.length === 0) {
+        return 'Нет доступных товаров'
+    }
+    console.log(massiveForJoin)
+    const string = massiveForJoin.join(', ')
+    return string;    
+}
+console.log(transformationArrayInString([{name: 'Никита', isAvailable: true}, {name: 'Андрей', isAvailable: false}]))
+
+/* Задача 2: Сортировка и фильтрация массива строк по длине и алфавиту
+Описание: Дан массив строк. Напишите функцию, которая фильтрует массив,
+оставляя только строки длиной более 3 символов, затем сортирует отфильтрованный массив по длине строк (от самой короткой к самой длинной),
+а затем сортирует строки одинаковой длины в алфавитном порядке. */
+
+function sortAndFilter (array) {
+    const newMassive = array
+    .filter((element) => {
+        if (element.length > 3) {
+            return element
+        }
+    })
+    .sort((a, b) => {
+        if (a.length !== b.length) {
+            return a.length - b.length    
+        } else {
+            if (a < b) { // чем меньше UniCode-код символа, тем выше он в алфавитном порядке. И строки с одинаковыми символами сравнивает посимвольно
+                return -1
+            }
+            if (a > b) {
+                return 1
+            }
+        }
+    })
+    return newMassive
+}
+console.log(sortAndFilter(['никита', 'арбуз', 'оп', 'два', 'четыр', 'абгд', 'шест']))
+
+
+
+
+
+
+
+
+
+
+
+
+          
